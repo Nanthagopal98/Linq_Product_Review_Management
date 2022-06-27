@@ -76,5 +76,17 @@ namespace Product_Review_Management
                 Console.WriteLine("Product ID : " + count.ProductId + " Count : " + count.count);
             }
         }
+        public void SelectSpecificColumn(List<ProductReviewModel> review)
+        {
+            var list = from ProductReviewModel in review select (ProductReviewModel.ProductId, ProductReviewModel.Rating);
+            foreach(var products in list)
+            {
+                Console.WriteLine("Product ID : " + products.ProductId + " Rating : " + products.Rating );
+            }
+        }
+        public void SkipTopFive()
+        {
+
+        }
     }
 }
