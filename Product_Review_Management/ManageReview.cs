@@ -68,5 +68,13 @@ namespace Product_Review_Management
                        " Review : " + sorting.Review + " IsLike : " + sorting.isLike);
             }
         }
+        public void GetCount(List<ProductReviewModel> review)
+        {
+            var reviewCount = review.GroupBy(x => x.ProductId).Select( x => new { ProductId = x.Key, count = x.Count() });
+            foreach(var count in reviewCount)
+            {
+                Console.WriteLine("Product ID : " + count.ProductId + " Count : " + count.count);
+            }
+        }
     }
 }
