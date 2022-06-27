@@ -78,8 +78,9 @@ namespace Product_Review_Management
         }
         public void SelectSpecificColumn(List<ProductReviewModel> review)
         {
-            var list = from ProductReviewModel in review select (ProductReviewModel.ProductId, ProductReviewModel.Rating);
-            foreach(var products in list)
+            //var list = from ProductReviewModel in review select (ProductReviewModel.ProductId, ProductReviewModel.Rating);
+            var list = review.Select(x => (x.ProductId, x.Rating));
+            foreach (var products in list)
             {
                 Console.WriteLine("Product ID : " + products.ProductId + " Rating : " + products.Rating );
             }
