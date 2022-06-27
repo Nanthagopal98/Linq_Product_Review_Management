@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace Product_Review_Management
         public List<ProductReviewModel> AddReviews()
         {
             List<ProductReviewModel> review = new List<ProductReviewModel>() {
-            new ProductReviewModel() {  ProductId = 101, UserId = 1, Rating = 4, Review = "Good", isLike = true },
+            new ProductReviewModel() { ProductId = 101, UserId = 1, Rating = 4, Review = "Good", isLike = true },
             new ProductReviewModel() { ProductId = 102, UserId = 2, Rating = 4, Review = "Good", isLike = true },
             new ProductReviewModel() { ProductId = 103, UserId = 3, Rating = 4, Review = "Good", isLike = true },
             new ProductReviewModel() { ProductId = 104, UserId = 4, Rating = 3.5, Review = "Good", isLike = true },
@@ -92,6 +93,50 @@ namespace Product_Review_Management
             {
                 Console.WriteLine("Product ID : " + skip.ProductId + " User ID : " + skip.UserId + " Rating : " + skip.Rating +
                     " Review : " + skip.Review + " IsLike : " + skip.isLike);
+            }
+        }
+        public DataTable ReviewUsingTable()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Product ID");
+            table.Columns.Add("User ID");
+            table.Columns.Add("Rating");
+            table.Columns.Add("Review");
+            table.Columns.Add("IsLike");
+            table.Rows.Add(101, 1, 4, "Good", true);
+            table.Rows.Add(102, 2, 5, "Excellent", true);
+            table.Rows.Add(103, 3, 4.5, "Good", true);
+            table.Rows.Add(104, 4, 3.5, "Good", true);
+            table.Rows.Add(105, 5, 2, "Worst", false);
+            table.Rows.Add(105, 6, 1, "Worst", false);
+            table.Rows.Add(103, 7, 1, "Worst", false);
+            table.Rows.Add(104, 8, 2.5, "Average", false);
+            table.Rows.Add(101, 9, 1.5, "Worst", false);
+            table.Rows.Add(102, 10, 3.5, "Average", true);
+            table.Rows.Add(105, 11, 5, "Good", true);
+            table.Rows.Add(103, 12, 4.5, "Good", true);
+            table.Rows.Add(104, 13, 3, "Average", true);
+            table.Rows.Add(102, 14, 3, "Good", true);
+            table.Rows.Add(103, 15, 1, "Worst", false);
+            table.Rows.Add(102, 16, 2, "Average", false);
+            table.Rows.Add(105, 17, 2.5, "Average", false);
+            table.Rows.Add(103, 18, 5, "Good", true);
+            table.Rows.Add(105, 19, 4, "Good", true);
+            table.Rows.Add(103, 20, 4, "Good", true);
+            table.Rows.Add(102, 21, 4, "Good", true);
+            table.Rows.Add(102, 22, 5, "Good", true);
+            table.Rows.Add(102, 23, 5, "Good", true);
+            table.Rows.Add(104, 24, 2, "Average", false);
+            table.Rows.Add(103, 25, 3, "Average", false);           
+            return table;
+        }
+        public void DisplayReviewFromTable(DataTable table)
+        {
+            IEnumerable<DataRow> list = from dataTable in table.AsEnumerable() select dataTable;
+            foreach (var items in list)
+            {
+                Console.WriteLine("Produce ID : "+items.Field<string>("Product ID")+ " User ID : "+ items.Field<string>("User ID")+
+                    " Rating : "+ items.Field<string>("Review")+" Review : "+ items.Field<string>("Review")+" IsLike : "+ items.Field<string>("IsLike"));
             }
         }
     }
