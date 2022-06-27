@@ -53,10 +53,19 @@ namespace Product_Review_Management
             var topThree = (from ProductReviewModel in review orderby ProductReviewModel.Rating descending select ProductReviewModel).Take(3);
             Console.WriteLine("Top Three Reviews Are");
             foreach (var top in topThree)
-            {
-                
+            {               
                 Console.WriteLine("Product ID : " + top.ProductId + " User ID : " + top.UserId + " Rating : " + top.Rating +
                     " Review : " + top.Review + " IsLike : " + top.isLike);
+            }
+        }
+        public void SortByRating(List<ProductReviewModel> review)
+        {
+            var sort = from ProductReviewModel in review where ((ProductReviewModel.Rating > 3 && ProductReviewModel.ProductId == 101) || (ProductReviewModel.Rating > 3 && ProductReviewModel.ProductId == 103) ||
+                       (ProductReviewModel.Rating > 3 && ProductReviewModel.ProductId == 105)) select ProductReviewModel;
+            foreach(var sorting in sort)
+            {
+                Console.WriteLine("Product ID : " + sorting.ProductId + " User ID : " + sorting.UserId + " Rating : " + sorting.Rating +
+                       " Review : " + sorting.Review + " IsLike : " + sorting.isLike);
             }
         }
     }
