@@ -84,9 +84,14 @@ namespace Product_Review_Management
                 Console.WriteLine("Product ID : " + products.ProductId + " Rating : " + products.Rating );
             }
         }
-        public void SkipTopFive()
+        public void SkipTopFive(List<ProductReviewModel> review)
         {
-
+            var list = (from ProductReviewModel in review select ProductReviewModel).Skip(5);
+            foreach (var skip in list)
+            {
+                Console.WriteLine("Product ID : " + skip.ProductId + " User ID : " + skip.UserId + " Rating : " + skip.Rating +
+                    " Review : " + skip.Review + " IsLike : " + skip.isLike);
+            }
         }
     }
 }
