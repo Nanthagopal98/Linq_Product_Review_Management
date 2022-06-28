@@ -6,7 +6,7 @@ List<ProductReviewModel> review = manage.AddReviews();
 var table = manage.ReviewUsingTable();
 Console.WriteLine("1 - Add And Display Review \n2 - Get Top Three Reviews \n3 - Sort By Rating Of Products 101,103,105" +
     "\n4 - Get Product Review Count \n5 - Select Specific Column \n6 - Skip Top Five Review \n7 - Add And Display Review Usign DataTable" +
-    "\n8 - Sort By Is Like \n10 - Sort By Review Message");
+    "\n8 - Sort By Is Like \n10 - Sort By Review Message \n11 - Add Data and Display By User ID");
 int select = Convert.ToInt32(Console.ReadLine());
 switch(select)
 {
@@ -40,6 +40,9 @@ switch(select)
     case 10:
         manage.SortByReview(table);
         break;
+    case 11:
+        manage.AddDataTOTable(table);
+        break;   
 }
 
 

@@ -165,5 +165,19 @@ namespace Product_Review_Management
                     " Rating : " + items.Field<double>("Rating") + " Review : " + items.Field<string>("Review") + " IsLike : " + items.Field<bool>("IsLike"));
             }
         }
+        public void AddDataTOTable(DataTable table)
+        {
+            table.Rows.Add(103, 10, 5, "Good", true);
+            table.Rows.Add(101, 10, 1, "Worst", false);
+            table.Rows.Add(105, 10, 3, "Average", true);
+            table.Rows.Add(104, 10, 4, "Good", true);
+            table.Rows.Add(102, 10, 2.5, "Average", true);
+            var list = from dataTable in table.AsEnumerable() where dataTable.Field<int>("User ID") == 10 select dataTable;
+            foreach(var items in list)
+            {
+                Console.WriteLine("Produce ID : " + items.Field<int>("Product ID") + " User ID : " + items.Field<int>("User ID") +
+                    " Rating : " + items.Field<double>("Rating") + " Review : " + items.Field<string>("Review") + " IsLike : " + items.Field<bool>("IsLike"));
+            }
+        }
     }
 }
