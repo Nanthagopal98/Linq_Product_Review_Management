@@ -98,11 +98,11 @@ namespace Product_Review_Management
         public DataTable ReviewUsingTable()
         {
             DataTable table = new DataTable();
-            table.Columns.Add("Product ID");
-            table.Columns.Add("User ID");
-            table.Columns.Add("Rating");
-            table.Columns.Add("Review");
-            table.Columns.Add("IsLike");
+            table.Columns.Add("Product ID",typeof(int));
+            table.Columns.Add("User ID",typeof(int));
+            table.Columns.Add("Rating", typeof(double));
+            table.Columns.Add("Review", typeof(string));
+            table.Columns.Add("IsLike", typeof(bool));
             table.Rows.Add(101, 1, 4, "Good", true);
             table.Rows.Add(102, 2, 5, "Excellent", true);
             table.Rows.Add(103, 3, 4.5, "Good", true);
@@ -135,8 +135,17 @@ namespace Product_Review_Management
             IEnumerable<DataRow> list = from dataTable in table.AsEnumerable() select dataTable;
             foreach (var items in list)
             {
-                Console.WriteLine("Produce ID : "+items.Field<string>("Product ID")+ " User ID : "+ items.Field<string>("User ID")+
-                    " Rating : "+ items.Field<string>("Review")+" Review : "+ items.Field<string>("Review")+" IsLike : "+ items.Field<string>("IsLike"));
+                Console.WriteLine("Produce ID : "+items.Field<int>("Product ID")+ " User ID : "+ items.Field<int>("User ID")+
+                    " Rating : "+ items.Field<double>("Rating")+" Review : "+ items.Field<string>("Review")+" IsLike : "+ items.Field<bool>("IsLike"));
+            }
+        }
+        public void SortByIsLike(DataTable table)
+        {
+            var list = from dataTable in table.AsEnumerable() where dataTable.Field<bool>("IsLike") == true select dataTable;
+            foreach (var items in list)
+            {
+                Console.WriteLine("Produce ID : " + items.Field<int>("Product ID") + " User ID : " + items.Field<int>("User ID") +
+                    " Rating : " + items.Field<double>("Rating") + " Review : " + items.Field<string>("Review") + " IsLike : " + items.Field<bool>("IsLike"));
             }
         }
     }
