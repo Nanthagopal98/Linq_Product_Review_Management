@@ -34,7 +34,11 @@ switch(select)
     case 8:
         manage.SortByIsLike(table);
         break;
+    case 9:
+        manage.RatingAverage(table);
+        break;
 }
+
 
 
 

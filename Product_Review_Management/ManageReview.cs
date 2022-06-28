@@ -148,5 +148,14 @@ namespace Product_Review_Management
                     " Rating : " + items.Field<double>("Rating") + " Review : " + items.Field<string>("Review") + " IsLike : " + items.Field<bool>("IsLike"));
             }
         }
+        public void RatingAverage(DataTable table)
+        {            
+            var list = table.AsEnumerable().GroupBy(x => x.Field<int>("Product ID")).Select(x => new { ProductID = x.Key, average = x.Average(y => (y.Field<double>("Rating"))) });
+            foreach (var items in list)
+            {
+                Console.WriteLine("Product ID : " + items.ProductID + " Count : "+ items.average);
+            }
+                       
+        }
     }
 }
